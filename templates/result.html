@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='pic/MA3.png') }}" type="image/x-icon" />
+    <title>Major Assistant</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<style>
+    @font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam.ttf') }}') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam-Bold.ttf') }}') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.ttf') }}') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Light.ttf') }}') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.ttf') }}') format('truetype');
+  font-weight: 500;
+}
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md">
+    <a class="navbar-brand" href="#"
+    ><img src="{{ url_for('static', filename='pic/MA.png') }}" alt="MA" width="100px" height="60px"
+    /></a>
+    <button
+            class="navbar-toggler navbar-dark"
+            type="button"
+            data-toggle="collapse"
+            data-target="#main-navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navigation">
+        <ul class="navbar-nav p-4">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('index') }}">خانه</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('aboutus') }}">درباره ما</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class=" container-fluid ">
+    <div class=" my-3 mx-auto bg-white ">
+        <div class="container">
+             <div class="row text-center">
+            <div class="display-6 text-center mx-auto my-3">
+            <h4 class="display-6  ">رشته های متناسب با شخصیت شما</h4>
+            </div>
+
+            </div>
+
+            <div class=" col-lg-8  mx-auto  ">
+            <canvas  class="w-100 mh-100 d-block" id="chart2" style="height: 300px;"></canvas>
+
+            </div>
+    <script>
+      // bar chart data
+      var barData = {
+        labels : [
+          {% for item in labels2 %}
+           "{{ item }}",
+          {% endfor %}
+	],
+
+        datasets : [{
+          fillColor: "rgba(126,151,167, 0.2)",
+          strokeColor: "rgba(126,151,167,1)",
+          pointColor: "rgba(126,151,167,1)",
+          data : [
+            {% for item in predict %}
+               {{ item }},
+              {% endfor %}
+	    ]
+          }
+        ]
+      }
+
+     // get bar chart canvas
+     var mychart = document.getElementById("chart2").getContext("2d");
+
+       steps = 10
+       max = {{max}}
+
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+       }
+     );
+
+    </script>
+    </div>
+        </div>
+    </div>
+
+</div>
+<div class=" container-fluid ">
+    <div class="jumbotron my-3 mx-auto bg-light ">
+        <div class="container">
+             <div class="row ">
+            <div  class="col-md-7 ">
+            <h4 class="display-6 text-right ">رنگ غالب شخصیتی شما {{A}} است</h4>
+
+            <p class="lead text-right ">
+                شخصیت شما از {{SY}} درصد رنگ زرد، {{SB}} درصد رنگ آبی، {{SW}} درصد رنگ سفید و {{SR}} درصد رنگ قرمز تشکیل شده است
+            </p>
+            </div>
+            <div class="col-md-5 "><canvas class="mw-100 " id="chart" ></canvas></div>
+    <script>
+      var pieData = [
+        {% for item, label, colors in set %}
+          {
+            value: {{item}},
+            label: "{{label}}",
+            color : "{{colors}}"
+          },
+        {% endfor %}
+      ];
+
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+      steps = 10
+      max = {{ max }}
+
+      // draw pie chart
+      new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+
+    </script>
+    </div>
+        </div>
+    </div>
+</div>
+ <div class="container-fluid  text-right">
+    <div class="jumbotron my-3 mx-auto bg-light">
+      <div class="container">
+        <h4 class="display-6 text-right text-danger">قرمزها</h4>
+        <p class="lead text-right">
+              قرمزها کارها را تمام می کنند و سرعت تکمیل شدن کارها به آنها انگیره
+              می دهد . قرمز ها چشم انداز و رهبری دارند و معمولا مسئولیت ، عزم و
+              قاطعیت از ویژگی آنهاست .
+            </p>
+      </div>
+    </div>
+
+    <div class="jumbotron  mx-auto my-3 bg-light ">
+      <div class="container">
+        <h4 class="display-6 text-right text-primary">آبی‌ها</h4>
+        <p class="lead text-right">
+              آبی ها کارها را خوب انجام می دهند و برای آنها صمیمیت ، ارتباطات ،
+              کیفیت روابط و داشتن هدف اهمیت دارد . آنها خدمات و کارهای با کیفیت
+              ارائه می کنند و معمولا با وفا، صادق و متفکر هستند .
+            </p>
+      </div>
+    </div>
+    <div class="jumbotron my-3 mx-auto bg-light">
+      <div class="container">
+        <h4 class="display-6 text-right text-white" style="text-shadow: 0px 0px 1px #000000;">سفیدها</h4>
+        <p class="lead text-right">
+              سفیدها حافظان صلح هستند که برایشان نبود تضاد و درگیری ارزش دارد .
+              آنها شفافیت و صبر دارند و به طور کلی مهربان ، سازگار پذیر و شنونده
+              های خوبی هستند .
+            </p>
+      </div>
+    </div>
+
+    <div class="jumbotron  mx-auto my-3 bg-light ">
+      <div class="container">
+        <h4 class="display-6 text-right text-warning">زردها</h4>
+        <p class="lead text-right">
+              زردها به تفریحی انجام دادن کارها اهمیت می دهند و به خاطر لذت و
+              سرگرمی کار می کنند . آنها شور و شوق و خوشبینی را ایجاد کرده و
+              کاریزماتیک ، خودانگیخته و اجتماعی محسوب می شوند .
+           </p>
+      </div>
+    </div>
+
+</div>
+<div class="container text-center">
+    <div class="jumbotron mb-3 mx-auto bg-white {{Rvis}}">
+      <div class="container">
+        <h4 class="display-6 ">        محدودیت ها (معایب) قرمز‌ها
+        </h4>
+        <ul class="list-group list-group-flush p-0">
+              <li class="list-group-item">
+                معمولا به دنبال حفظ منافع خودشان هستند ( برای من چه نفعی دارد ؟
+                )
+              </li>
+              <li class="list-group-item">
+                اگر برای رسیدن به هدف شخصی آشوب و درگیری لازم باشد به آن دامن می
+                زنند .
+              </li >
+              <li class="list-group-item">احساسی نیستند.</li>
+              <li class="list-group-item">
+                در خلوت خود با استدلال عمل می کنند و در جمع احساسات خود را مخفی
+                می کنند .
+              </li >
+              <li class="list-group-item">همیشه دوست دارند حق با آنها باشد .</li>
+              <li class="list-group-item">
+                آرام و قرار ندارند مگر این که تولید و بهره وری داشته باشند (
+                کوسه را تصور کنید ! )
+              </li>
+              <li class="list-group-item">اغلب مغرور بوده و تابع قدرت دیگران نیستند .</li>
+              <li class="list-group-item">احساسات دیگران را در نظر نمی گیرند .</li>
+              <li class="list-group-item">
+                شکننده بودن خود را نسبت به ترس از دست دادن قدرت و کنترل نشان نمی
+                دهند .
+              </li>
+     </ul>
+      </div>
+    </div>
+         <div class="jumbotron mb-3 mx-auto bg-white {{Wvis}}">
+      <div class="container">
+        <h4 class="display-6 "> محدودیت ها (معایب) سفیدها</h4>
+        <ul class="list-group list-group-flush p-0">
+              <li class="list-group-item">جدا و غیر درگیر با موضوع ها به نظر می رسند .</li>
+              <li class="list-group-item">دیدگاه انفعالی به زندگی دارند .</li>
+              <li class="list-group-item">
+                در مورد تجربه ها واکنش نداشته و یا هیجان واضحی را نشان نمی دهند
+                .
+              </li>
+              <li class="list-group-item">برای صمیمی شدن با مشکلاتی مواجه هستند .</li>
+              <li class="list-group-item">نسبت به خود کم رو و خجالتی اند .</li>
+              <li class="list-group-item">خیلی زود برنامه ها را برای تغییر دستکاری می کنند .</li>
+              <li class="list-group-item">در مورد جهت و اهدافی که باید دنبال کنند ، تردید دارند .</li>
+              <li class="list-group-item">
+                معمولا برای گرفتن مسئولیت تنبلی و یا بی اشتیاقی نشان می دهند .
+              </li>
+              <li class="list-group-item">در تعهد داشتن مقاومت نشان می دهند .</li>
+     </ul>
+      </div>
+    </div>
+         <div class="jumbotron mb-0 mx-auto bg-white {{Yvis}}">
+      <div class="container">
+        <h4 class="display-6 ">محدودیت ها (معایب) زرد‌ها</h4>
+        <ul class="list-group list-group-flush p-0">
+              <li class="list-group-item">
+                نیاز دارند که از لحاظ اجتماعی خوب به نظر برسند ( اولویت بالا )
+              </li>
+              <li class="list-group-item">غیر واقعی و بی مسئولیت هستند .</li>
+              <li class="list-group-item">اتکا به خود و خودبینی دارند .</li>
+              <li class="list-group-item">بی تعهد بوده و دمدمی مزاج هستند .</li>
+              <li class="list-group-item">زیاد صحبت می کنند و کمتر اقدام می کنند .</li>
+              <li class="list-group-item">ظاهری عمل کرده و اغلب به اوقات خوش علاقه دارند .</li>
+              <li class="list-group-item">
+                برای این که محصول با کیفیتی خلق کنند تمایلی به تجربه چیزهای
+                ناخوشایند ندارند .
+              </li>
+              <li class="list-group-item">بی نظم هستند .</li>
+              <li class="list-group-item">در مکان های عمومی سرو صدا می کنند .</li>
+              <li class="list-group-item">
+                در موفقیت های خود اغراق کرده و واقعیت های تلخ را نادیده می گیرند
+                .
+              </li>
+              <li class="list-group-item">نمی توانند با مسائل روبرو مقابله کنند .</li>
+     </ul>
+      </div>
+    </div>
+         <div class="jumbotron mb-3 mx-auto bg-white {{Bvis}}">
+      <div class="container">
+        <h4 class="display-6 ">محدودیت ها (معایب) آبی‌ها</h4>
+        <ul class="list-group list-group-flush p-0">
+               <li class="list-group-item">بسیار احساسی هستند .</li>
+              <li class="list-group-item">از خود راضی اند و فکر می کنند حق با آنهاست .</li>
+              <li class="list-group-item">
+                وقتی موفقیت های دیگران به راحتی به دست آمده به آن حسادت و یا
+                کنترل دارند .
+              </li>
+              <li class="list-group-item">به ایده آل گرایی و عملکرد گرایش زیادی دارند .</li>
+              <li class="list-group-item">به صورت کلامی به خود توهین می کنند .</li>
+     </ul>
+      </div>
+    </div>
+         <div class="jumbotron mb-3 mx-auto bg-white {{Bvis}}">
+      <div class="container">
+        <h4 class="display-6 ">درس‌های زندگی برای آبی‌ها</h4>
+        <ul class="list-group list-group-flush p-0">
+              <li class="list-group-item">
+                سعی کنید زمانی که تحت فشار قرار گرفتید به جای واکنش احساسی،
+                منطقی فکر کنید .
+              </li>
+              <li class="list-group-item">
+                محدودیت های خود را زمانی که دیگران برای شما موعد تحویل مشخص می
+            کنند واضح بیان کنید .
+              </li>
+              <li class="list-group-item">انتظارات خود را مدیریت کنید</li>
+              <li class="list-group-item"> توقعات غیر واقعی از خود یا دیگران ایجاد نکنید به طوریکه خودتان یا آنها را غرق در فکر کنید. </li>
+              <li class="list-group-item">به مراواداتی که با افراد دارید ، جنبه شخصی ندهید .</li>
+              <li class="list-group-item">
+                به جای این که    مدیریت را به صورت مطلق در نظر بگیرید ، آن را
+                منعطف و سیال ببینید .
+              </li>
+              <li class="list-group-item">همه چیزهایی که می خواهید کنترل کنید ، محدود هستند .</li>
+              <li class="list-group-item">
+                محدودیت ده دقیقه ای را برای هر موضوعی که نگران آن هستید ، در نظر
+                بگیرید .
+              </li>
+      </div>
+    </div>
+         <div class="jumbotron mb-3 mx-auto bg-white {{Rvis}}">
+      <div class="container">
+        <h4 class="display-6 ">درس‌های زندگی برای قرمزها</h4>
+        <ul class="list-group list-group-flush p-0">
+               <li class="list-group-item">با دیگران به صورت عاطفی و اجتماعی ارتباط برقرار کنید .</li>
+              <li class="list-group-item">
+                باور داشته باشید که افراد دیگر نیز کارها را درست انجام می دهند .
+              </li>
+              <li class="list-group-item">
+                هنگام هدف گذاری ، هدف ها را از کاری که برای دیگران انجام می
+                دهید، جدا کنید .
+              </li>
+              <li class="list-group-item">
+                از سرزنش دیگران وقتی که نتوانستند تعهدات شما را برآورده کنند
+                خودداری کنید .
+              </li>
+              <li class="list-group-item">
+                به مشکلات خود دقیق فکر کرده و توصیه دیگران را در نظر بگیرید .
+              </li>
+              <li class="list-group-item">نمی توانید همه کارها را خودتان انجام دهید .</li>
+              <li class="list-group-item">
+                وقتی خواسته های خود را بر زمان دیگران تحمیل می کنید ، مواظب
+                باشید .
+              </li>
+     </ul>
+      </div>
+    </div>
+         <div class="jumbotron mb-3 mx-auto bg-white {{Wvis}}">
+      <div class="container">
+        <h4 class="display-6 ">درس‌های زندگی برای سفیدها</h4>
+        <ul class="list-group list-group-flush p-0">
+              <li class="list-group-item">
+                احساس و درک خود را نسبت به خود ، وظایف پیش رو و یا رفتار دیگران
+                به صورت کلامی بیان کنید .
+              </li>
+              <li class="list-group-item">به جای نادیده گرفتن مشکلات ، به آنها اشاره کنید .</li>
+              <li class="list-group-item">باور داشته باشید یا نه ، تضاد می تواند مفید واقع شود .</li>
+              <li class="list-group-item">به طور فعال مفهوم ضرورت را دنبال کنید .</li>
+              <li class="list-group-item">
+                به طور فعالانه سعی کنید به جای انجام برنامه های که دیگران برای
+                شما تعیین می کنند ، برنامه های کاری خود را پیش ببرید .
+              </li>
+              <li class="list-group-item">کمی ریسک کنید .</li>
+              <li class="list-group-item">
+                سعی کنید رویاهای در طول روز خود را کنترل کنید تا زمان زیادی از
+                وقتتان را برای انجام کار نگیرد .
+              </li>
+     </ul>
+      </div>
+    </div>
+         <div class="jumbotron mt-0 mx-auto bg-white {{Yvis}}">
+      <div class="container">
+        <h4 class="display-6 ">درس‌های زندگی برای زرد‌ها</h4>
+        <ul class="list-group list-group-flush p-0">
+              <li class="list-group-item">
+                بدانید که مشغول بودن به کاری الزاما به معنای اقدام هدفمند نیست .
+              </li>
+              <li class="list-group-item">
+                روزانه اهداف خاص را برنامه ریزی کرده و آنها را اولویت بندی کنید
+                .
+              </li>
+              <li class="list-group-item">
+                به جای توجه به کارهای سرگرم کننده به کارهای های مهم تمرکز کنید .
+              </li>
+              <li class="list-group-item">
+                زمانی که بر روی وظیفه خاصی تمرکز کرده اید که باید در زمان معین
+                انجام دهید، زمان بندی قابل دست یابی تعیین کنید و هنگام دست یابی
+                و انجام آنها به خودتان پاداش سرگرمی بدهید .
+              </li>
+              <li class="list-group-item">به تصویر بزرگ تر متعهد باشید .</li>
+              <li class="list-group-item">
+                در خلاقیت های بی مورد تعادل برقرار کنید و به تعهدات تمرکز داشته
+                باشید .
+              </li>
+              <li class="list-group-item">
+                برای کارهای پیش رو برنامه داشته باشید تا بتوانید به موقع آنها را
+                تمام کنید .
+              </li>
+              <li class="list-group-item">
+                خوب گوش کنید تا برای اطلاعاتی که به شما ارائه داده اند صحبت های
+                آن ها را قطع کنید .
+              </li>
+     </ul>
+      </div>
+    </div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 p-3">
+            <table class="table text-center">
+                <thead class="thead-light">
+                <tr>
+                    <h4 class="display-6 text-center border-danger text-danger">قرمزها</h4
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>انگیزه</td>
+                    <td>قدرت</td>
+                </tr>
+                <tr>
+                    <td>نیازها</td>
+                    <td><ul class="list-unstyled">
+                        <li>خوب به نظر رسیدن ( از نظر فنی )</li>
+                        <li>حق با آن ها باشد</li>
+                        <li>مورد احترام باشند</li>
+                        <li>تایید از سوی عده ای کم و منتخب</li>
+                    </ul></td>
+                </tr>
+                <tr>
+                    <td>خواسته ها</td>
+                    <td><ul class="list-unstyled">
+                        <li>مخفی کردن عدم امنیت ( به شدت )</li>
+                        <li>بهره وری</li>
+                        <li>رهبری</li>
+                        <li> تجربه های چالشی</li>
+                    </ul></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 p-3">
+            <table class="table text-center">
+                <thead class="thead-light">
+                <tr>
+                    <h4 class="display-6 text-center text-warning">زردها</h4>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>انگیزه</td>
+                    <td>لذت و تفریح</td>
+                </tr>
+                <tr>
+                    <td>نیازها</td>
+                    <td><ul class="list-unstyled">
+                        <li>خوب به نظر رسیدن ( اجتماعی )</li>
+                        <li>متوجه موضوعات شوند</li>
+                        <li>ستایش شوند</li>
+                        <li>تایید از سوی جمع</li>
+                    </ul></td>
+                </tr>
+                <tr>
+                    <td>خواسته ها</td>
+                    <td><ul class="list-unstyled">
+                        <li>مخفی کردن عدم امنیت ( کم )</li>
+                        <li>شادی</li>
+                        <li>آزادی</li>
+                        <li> تجربه های لذت بخش </li>
+                    </ul></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 p-3">
+            <table class="table text-center">
+                <thead class="thead-light">
+                <tr>
+                    <h4 class="display-6 text-center text-primary">آبی‌ها</h4>
+                <tr>
+                    <td>انگیزه</td>
+                    <td>صمیمیت</td>
+                </tr>
+                <tr>
+                    <td>نیازها</td>
+                    <td><ul class="list-unstyled">
+                        <li>خوب به نظر رسیدن ( اخلاقی )</li>
+                        <li>درک شوند</li>
+                        <li>تحسین شوند</li>
+                        <li>پذیرش</li>
+                    </ul></td>
+                </tr>
+                <tr>
+                    <td>خواسته ها</td>
+                    <td><ul class="list-unstyled">
+                        <li>آشکار کردن عدم امنیت</li>
+                        <li>کیفیت</li>
+                        <li>اختیار</li>
+                        <li>امنیت</li>
+                    </ul></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 p-3">
+            <table class="table text-center">
+                <thead class="thead-light">
+                <tr>
+                    <h4 class="display-6 text-center text-white" style="text-shadow: 0px 0px 1px #000000;">سفیدها</h4>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>انگیزه</td>
+                    <td>صلح</td>
+                </tr>
+                <tr>
+                    <td>نیازها</td>
+                    <td><ul class="list-unstyled">
+                        <li>حس خوب داشتن ( درونی )</li>
+                        <li>به آن ها فضای شخصی داده شود</li>
+                        <li>مورد احترام باشند</li>
+                        <li>مهربانی</li>
+                    </ul></td>
+                </tr>
+                <tr>
+                    <td>خواسته ها</td>
+                    <td><ul class="list-unstyled">
+                        <li>مقابله با عدم امنیت</li>
+                        <li>صبر</li>
+                        <li>استقلال</li>
+                        <li>رضایت</li>
+                    </ul></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+         <div class="container">
+            <div class="row"></br></div>
+        </div>
+    <footer class="footer position-fixed mt-2">
+        <div class=" justify-content-center text-center">
+          <div class="col-auto ">
+            <p class="m-2">© Copyright 2021 دستیار انتخاب رشته</p>
+          </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

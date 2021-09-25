@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='pic/MA3.png') }}" type="image/x-icon" />
+    <title>Major Assistant</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<style>
+    @font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam.ttf') }}') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam-Bold.ttf') }}') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.ttf') }}') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Light.ttf') }}') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.ttf') }}') format('truetype');
+  font-weight: 500;
+}
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md">
+    <a class="navbar-brand" href="{{ url_for('index') }}"
+    ><img src="{{ url_for('static', filename='pic/MA.png') }}" alt="MA" width="100px" height="60px"
+    /></a>
+    <button
+            class="navbar-toggler navbar-dark"
+            type="button"
+            data-toggle="collapse"
+            data-target="#main-navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navigation">
+        <ul class="navbar-nav p-4">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('index') }}">خانه</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">درباره ما</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid  text-right">
+    <div class="jumbotron my-3 mx-auto bg-light">
+      <div class="container">
+        <h4 class="display-3 text-center">با تیم ما آشنا شوید  </h4>
+        <p class="lead text-right"></p>
+      </div>
+    </div>
+<div class="container my-5 list-unstyled">
+    <div class="row">
+            <div class="col-12 col-md-6 col-xl-3">
+                <div class="media">
+                    <div class="media-body">
+                        <table class="table text-center justify-content-center">
+                            <thead class="thead-light">
+                            <tr>
+                                <div class="text-center">
+                                    <img class="w-100 d-block rounded mx-auto" src="{{ url_for('static', filename='pic/Roya.jpg') }}" alt="roya asadi">
+                                </div>
+                            </tr>
+                            <tr>
+                                <h4 class=" display-8 text-center text-dark mt-2">دکتر رویا اسدی</h4>
+                            <tr>
+                                <td>دکترای هوش مصنوعی از دانشگاه UM مالزی</td>
+                            </tr>
+                            <tr>
+                                <td>استاد راهنما</td>
+                            </tr>
+                            <tr>
+                                <td>ایمیل: <a href="mailto:asadiroya@gmail.com">asadiroya@gmail.com</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3">
+                <div class="media">
+                <div class="media-body">
+                    <table class="table text-center">
+                        <thead class="thead-light">
+                        <tr>
+                            <div class="text-center">
+                                <img class="w-100 d-block rounded mx-auto" src="{{ url_for('static', filename='pic/Mahdi.jpg') }}" alt="mahdi baghdadi">
+                            </div>
+                        </tr>
+                        <tr>
+                            <h4 class="display-8 text-center mt-2">محمدمهدی بغدادی</h4>
+                        <tr>
+                            <td>دانشجوی مهندسی کامپیوتر دانشگاه تهران - دانشکده فنی فومن</td>
+                        </tr>
+                        <tr>
+                            <td>  پیاده سازی وب اپلیکیشن</td>
+                        </tr>
+                        <tr>
+                            <td>ایمیل: <a href="mailto:mahdi2016.iran@gmail.com"><small>mahdi2016.iran@gmail.com</small></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3">
+                <div class="media">
+                <div class="media-body">
+                    <table class="table text-center">
+                        <thead class="thead-light">
+                        <tr>
+                            <div class="text-center">
+                                <img class="w-100 d-block rounded mx-auto" src="{{ url_for('static', filename='pic/Aref.jpg') }}" alt="aref cheraghali">
+                            </div>
+                        </tr>
+                        <tr>
+                            <h4 class=" display-8 text-center mt-2">عارف چراغعلی</h4>
+                        <tr>
+                            <td>دانشجوی مهندسی کامپیوتر دانشگاه تهران - دانشکده فنی فومن</td>
+                        </tr>
+                        <tr>
+                            <td>طراحی سایت</td>
+                        </tr>
+                        <tr>
+                            <td>ایمیل: <a href="mailto:Arefdmw@gmail.com">arefdmw@gmail.com</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3">
+                <div class="media">
+                <div class="media-body">
+                    <table class="table text-center">
+                        <thead class="thead-light">
+                        <tr>
+                            <div class="text-center">
+                                <img class="w-100 d-block rounded mx-auto" src="{{ url_for('static', filename='pic/Ali.jpg') }}" alt="ali amiri nejad">
+                            </div>
+                        </tr>
+                        <tr>
+                            <h4 class="display-8 text-center mt-2">علی امیری نژاد</h4>
+                        <tr>
+                            <td>دانشجوی مهندسی کامپیوتر دانشگاه تهران - دانشکده فنی فومن</td>
+                        </tr>
+                        <tr>
+                            <td>پیاده سازی مدل هوش مصنوعی</td>
+                        </tr>
+                        <tr>
+                            <td>ایمیل: <a href="mailto:callmeamiri@gmail.com">callmeamiri@gmail.com</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+                </li>
+            <div class="col-12 col-md-6">
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row"></br></div>
+</div>
+<footer class="footer position-fixed mt-2">
+<div class=" justify-content-center text-center">
+  <div class="col-auto ">
+    <p class="m-2">© Copyright 2021 دستیار انتخاب رشته</p>
+  </div>
+</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+  <link rel="icon" href="{{ url_for('static', filename='pic/MA3.png') }}" type="image/x-icon" />
+  <title>Major Assistant</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+<style>
+    @font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam.ttf') }}') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam-Bold.ttf') }}') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.ttf') }}') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Light.ttf') }}') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.ttf') }}') format('truetype');
+  font-weight: 500;
+}
+
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md">
+      <a class="navbar-brand" href="#"
+        ><img src="{{ url_for('static', filename='pic/MA.png') }}" alt="MA" width="100px" height="60px"
+      /></a>
+      <button
+        class="navbar-toggler navbar-dark"
+        type="button"
+        data-toggle="collapse"
+        data-target="#main-navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main-navigation">
+        <ul class="navbar-nav p-4">
+          <li class="nav-item">
+            <a class="nav-link" href="#">خانه</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('aboutus') }}">درباره ما</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-white">
+      <div class="col-md-7 p-lg-5 mx-auto my-5">
+        <h1 class="display-5 font-weight-normal">دستیار انتخاب رشته‌ی تحصیلی</h1>
+        <p class="lead font-weight-normal m-4">بر اساس تست شخصیت شناسی هارتمن</p>
+        <a class="btn btn-outline-dark" href="{{ url_for('test') }}">شروع تست</a>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+
+      <div class="container-fluid  text-right">
+        <div class="jumbotron  mx-auto my-3 bg-light ">
+            <div class="container">
+            <h4 class="display-6 text-right">دستیار انتخاب رشته</h4>
+            <p class="lead text-right">یکی از بزرگترین چالش‌های هر دانش آموزی انتخاب رشته دانشگاهی است که بر روی زندگی و شغل آینده‌اش تاثیر بسزایی دارد. از همین رو ، به کمک تجربه‌ی دانشجویان و همچنین با بهره گیری از هوش مصنوعی دستیار هوشمندی طراحی کرده‌ایم تا بتواند به دانش‌آموزانی که قصد ادامه تحصیل در دانشگاه را دارند ، متناسب ترین رشته‌ی تحصیلی با شخصیتشان را پیشنهاد دهیم.</p>
+            </div>
+        </div>
+        <div class="jumbotron my-3 mx-auto bg-light">
+          <div class="container">
+            <h4 class="display-6 text-right"> تست هارتمن </h4>
+            <p class="lead text-right">تست هارتمن یک آزمون شخصیت شناسی است که شخصیت شما را بر اساس ارزش‌های مورد پذیرشتان در ۴ رنگ قرمز (قدرت)، آبی (صمیمیت)، سفید (صلح و آرامش) و زرد (لذت و تفریح) دسته بندی می‌کند. (در صورتی که تنها علاقه به مشاهده‌ی نتیجه‌ی تست هارتمن دارید نیز می توانید در تست انتخاب رشته شرکت کنید!)</p>
+          </div>
+        </div>
+    </div>
+
+        <div class="container my-3">
+            <div class="row"> </br> </div>
+        </div>
+    <footer class="footer position-fixed mt-2">
+        <div class=" justify-content-center text-center">
+          <div class="col-auto ">
+            <p class="m-2">© Copyright 2021 دستیار انتخاب رشته</p>
+          </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

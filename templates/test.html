@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+  <head>
+    <link rel="icon" href="{{ url_for('static', filename='pic/MA3.png') }}" type="image/x-icon" />
+    <title>Major Assistant</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
+<style>
+    @font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam.ttf') }}') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Bold.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Bold.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/font/Shabnam-Bold.ttf') }}') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Thin.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Thin.ttf') }}') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Light.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Light.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Light.ttf') }}') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Shabnam;
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot') }}');
+  src: url('{{ url_for('static', filename='font/Shabnam-Medium.eot?#iefix') }}') format('embedded-opentype'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff2') }}') format('woff2'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.woff') }}') format('woff'),
+url('{{ url_for('static', filename='font/Shabnam-Medium.ttf') }}') format('truetype');
+  font-weight: 500;
+}
+
+</style>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md">
+      <a class="navbar-brand" href="{{ url_for('index') }}"
+        ><img src="{{ url_for('static', filename='pic/MA.png') }}" alt="MA" width="100px" height="60px"
+      /></a>
+      <button
+        class="navbar-toggler navbar-dark"
+        type="button"
+        data-toggle="collapse"
+        data-target="#main-navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main-navigation">
+        <ul class="navbar-nav p-4">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('index') }}">خانه</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('aboutus') }}">درباره ما</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-3 mb-4 p-4 text-right">
+      <div class="alert alert-secondary text-center" role="alert">
+لطفا به تمامی سوالات پاسخ دهید      </div>
+      <form
+        class="row row-content "
+        method="post"
+        action="{{ url_for('result') }}"
+        name="form1"
+        id="form1"
+
+      >
+
+        <div class="col-12 col-md-6 ">
+          <div class="card bg-light mb-3 ">
+            <div class="card-header">
+              1 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-1-answers"
+                    id="question-1-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-1-answers-A">1) حمایتگر</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-1-answers"
+                    id="question-1-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-1-answers-B">2) خلاق</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-1-answers"
+                    id="question-1-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-1-answers-C">3) خود رأی</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-1-answers"
+                    id="question-1-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-1-answers-D">4) خونگرم</label>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              2 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-2-answers"
+                    id="question-2-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-2-answers-A">1) کمال گرا</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-2-answers"
+                    id="question-2-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-2-answers-B">2) قدرت طلب</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-2-answers"
+                    id="question-2-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-2-answers-C">3) خودمحور </label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-2-answers"
+                    id="question-2-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-2-answers-D">4) مردد</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              3 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-3-answers"
+                    id="question-3-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-3-answers-A">1) پرشور و حرارت</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-3-answers"
+                    id="question-3-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-3-answers-B">2) غمخوار</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-3-answers"
+                    id="question-3-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-3-answers-C">3) مقتدر</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-3-answers"
+                    id="question-3-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-3-answers-D">4) صبور</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              4 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-4-answers"
+                    id="question-4-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-4-answers-A">1) مظنون</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-4-answers"
+                    id="question-4-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-4-answers-B">2) زودباور</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-4-answers"
+                    id="question-4-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-4-answers-C">3) دودل</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-4-answers"
+                    id="question-4-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-4-answers-D">4) منفعت طلب</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              5 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-5-answers"
+                    id="question-5-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-5-answers-A">1) مصمم</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-5-answers"
+                    id="question-5-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-5-answers-B">2) قانع </label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-5-answers"
+                    id="question-5-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-5-answers-C">3) با نشاط </label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-5-answers"
+                    id="question-5-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-5-answers-D">4) وفادار</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              6 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-6-answers"
+                    id="question-6-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-6-answers-A">1) خودبین</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-6-answers"
+                    id="question-6-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-1-answers-B">2) دلواپس</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-6-answers"
+                    id="question-6-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-6-answers-C">3) لجباز</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-6-answers"
+                    id="question-6-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-6-answers-D">4) دمدمی</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              7 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-7-answers"
+                    id="question-7-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-7-answers-A">1) مهربان</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-7-answers"
+                    id="question-7-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-7-answers-B">2) خوش مشرب</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-7-answers"
+                    id="question-7-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-7-answers-C">3) قابل اطمینان</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-7-answers"
+                    id="question-7-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-7-answers-D">4) پرمدعا</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              8 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-8-answers"
+                    id="question-8-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-8-answers-A">1) خودمنتقد</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-8-answers"
+                    id="question-8-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-8-answers-B">2) بی میل</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-8-answers"
+                    id="question-8-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-8-answers-C">3) اهل شوخی</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-8-answers"
+                    id="question-8-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-8-answers-D">4) دستور بده</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              9 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-9-answers"
+                    id="question-9-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-9-answers-A">1) آسان گیر</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-9-answers"
+                    id="question-9-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-9-answers-B">2) فعال</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-9-answers"
+                    id="question-9-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-9-answers-C">3) بی خیال</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-9-answers"
+                    id="question-9-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-9-answers-D">4) تحلیل گر</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              10 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-10-answers"
+                    id="question-10-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-10-answers-A">1) خجالتی</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-10-answers"
+                    id="question-10-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-10-answers-B">2) عیب جو</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-10-answers"
+                    id="question-10-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-10-answers-C">3) حساس</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-10-answers"
+                    id="question-10-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-10-answers-D">4) بی تعارف</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              11 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-11-answers"
+                    id="question-11-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-11-answers-A">1) ریزبین</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-11-answers"
+                    id="question-11-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-11-answers-B">2) قاطع</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-11-answers"
+                    id="question-11-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-11-answers-C">3) شنونده</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-11-answers"
+                    id="question-11-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-11-answers-D">4) خوش گذران</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              12 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-12-answers"
+                    id="question-12-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-12-answers-A">1) متوقع</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-12-answers"
+                    id="question-12-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-12-answers-B">2) بی حال</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-12-answers"
+                    id="question-12-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-12-answers-C">3) خودپسند</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-12-answers"
+                    id="question-12-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-12-answers-D">4) بی گذشت</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              13 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-13-answers"
+                    id="question-13-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-13-answers-A">1) خوشحال</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-13-answers"
+                    id="question-13-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-13-answers-B">2) متعهد</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-13-answers"
+                    id="question-13-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-13-answers-C">3) آرمان گرا</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-13-answers"
+                    id="question-13-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-13-answers-D">4) ملاحظه کار</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              14 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-14-answers"
+                    id="question-14-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-14-answers-A">1) بدعنق</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-14-answers"
+                    id="question-14-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-14-answers-B">2) بی اراده</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-14-answers"
+                    id="question-14-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-14-answers-C">3) دمدمی مزاج</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-14-answers"
+                    id="question-14-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-14-answers-D">4) بی حوصله </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              15 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-15-answers"
+                    id="question-15-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-15-answers-A">1) مودب</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-15-answers"
+                    id="question-15-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-15-answers-B">2) صبور</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-15-answers"
+                    id="question-15-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-15-answers-C">3) بااراده</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-15-answers"
+                    id="question-15-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-15-answers-D">4) بامزه</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              16 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-16-answers"
+                    id="question-16-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-16-answers-A">1) غیرواقع بین</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-16-answers"
+                    id="question-16-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-16-answers-B">2) اهل جر و بحث</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-16-answers"
+                    id="question-16-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-16-answers-C">3) سر به هوا</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-16-answers"
+                    id="question-16-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-16-answers-D">4) حراف</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              17 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-17-answers"
+                    id="question-17-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-17-answers-A">1) مستقل</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-17-answers"
+                    id="question-17-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-17-answers-B">2) ملایم</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-17-answers"
+                    id="question-17-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-17-answers-C">3) ساده دل</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-17-answers"
+                    id="question-17-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-17-answers-D">4) وابسته</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              18 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-18-answers"
+                    id="question-18-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-18-answers-A">1) فراموشکار</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-18-answers"
+                    id="question-18-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-18-answers-B">2) دل تنگ</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-18-answers"
+                    id="question-18-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-18-answers-C">3) پرخاشگر</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-18-answers"
+                    id="question-18-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-18-answers-D">4) متزلزل</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              19 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-19-answers"
+                    id="question-19-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-19-answers-A">1) قدرتمند</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-19-answers"
+                    id="question-19-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-19-answers-B">2) متشخص</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-19-answers"
+                    id="question-19-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-19-answers-C">3) اهل تأمل</label>
+                </li>
+
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-19-answers"
+                    id="question-19-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-19-answers-D">4) خوش بین</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              20 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-20-answers"
+                    id="question-20-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-20-answers-A">1) اهل قضاوت</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-20-answers"
+                    id="question-20-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-20-answers-B">2) بی انضباطی</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-20-answers"
+                    id="question-20-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-20-answers-C">3) کسل کننده</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-20-answers"
+                    id="question-20-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-20-answers-D">4) بی تفاوت</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              21 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-21-answers"
+                    id="question-21-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-21-answers-A">1) موافق</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-21-answers"
+                    id="question-21-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-21-answers-B">2) منطقی </label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-21-answers"
+                    id="question-21-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-21-answers-C">3) هیجانی</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-21-answers"
+                    id="question-21-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-21-answers-D">4) محبوب</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              22 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-22-answers"
+                    id="question-22-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-22-answers-A">1) بی تعهد</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-22-answers"
+                    id="question-22-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-22-answers-B">2) معذب</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-22-answers"
+                    id="question-22-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-22-answers-C">3) بی نشاط</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-22-answers"
+                    id="question-22-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-22-answers-D">4) همیشه روراست</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              23 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-23-answers"
+                    id="question-23-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-23-answers-A">1) باوقار</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-23-answers"
+                    id="question-23-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-23-answers-B">2) خودجوش</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-23-answers"
+                    id="question-23-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-23-answers-C">3) عمل گرا</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-23-answers"
+                    id="question-23-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-23-answers-D">4) پذیرا</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              24 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-24-answers"
+                    id="question-24-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-24-answers-A">1) افاده ای</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-24-answers"
+                    id="question-24-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-24-answers-B">2) مرموز</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-24-answers"
+                    id="question-24-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-24-answers-C">3) سنگدل</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-24-answers"
+                    id="question-24-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-24-answers-D">4) فکور</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              25 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-25-answers"
+                    id="question-25-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-25-answers-A">1) سرزنده</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-25-answers"
+                    id="question-25-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-25-answers-B">2) تکلیف مدار</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-25-answers"
+                    id="question-25-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-25-answers-C">3) با سیاست</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-25-answers"
+                    id="question-25-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-25-answers-D">4) صمیمی</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              26 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-26-answers"
+                    id="question-26-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-26-answers-A">1) رک</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-26-answers"
+                    id="question-26-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-26-answers-B">2) تنبل</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-26-answers"
+                    id="question-26-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-26-answers-C">3) مشکل پسند</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-26-answers"
+                    id="question-26-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-26-answers-D">4) بی دقت</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              27 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-27-answers"
+                    id="question-27-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-27-answers-A">1) سازگار</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-27-answers"
+                    id="question-27-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-27-answers-B">2) بازیگر</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-27-answers"
+                    id="question-27-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-27-answers-C">3) سازنده</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-27-answers"
+                    id="question-27-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-27-answers-D">4) رسمی</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              28 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-28-answers"
+                    id="question-28-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-28-answers-A">1) خودبرحق بین</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-28-answers"
+                    id="question-28-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-28-answers-B">2) خود سرزنشگر</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-28-answers"
+                    id="question-28-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-28-answers-C">3) نامرتب</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-28-answers"
+                    id="question-28-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-28-answers-D">4) حسابگر</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              29 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-29-answers"
+                    id="question-29-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-29-answers-A">1) خاطر جمع</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-29-answers"
+                    id="question-29-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-29-answers-B">2) جذاب</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-29-answers"
+                    id="question-29-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-29-answers-C">3) منضبط</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-29-answers"
+                    id="question-29-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-29-answers-D">4) دوست داشتنی</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              30 – کلمه یا عبارتی که به بهترین شکل شما را توصیف می نماید انتخاب
+              نمایید.
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-30-answers"
+                    id="question-30-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-30-answers-A">1) واقعیت گریز</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-30-answers"
+                    id="question-30-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-30-answers-B">2) بی فایده</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-30-answers"
+                    id="question-30-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-30-answers-C">3) پرهیبت</label>
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-30-answers"
+                    id="question-30-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-30-answers-D">4) دقیق</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              31 – اگر من دنبال شغل دلخواهم باشم، یک کارفرمای آینده نگر مرا
+              استخدام خواهد کرد چون من:
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-31-answers"
+                    id="question-31-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-31-answers-A"
+                    >1) اهل تامل، دقیق و قابل اعتمادم</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-31-answers"
+                    id="question-31-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-31-answers-B"
+                    >2) صبور سازگار و با ملاحظه ام</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-31-answers"
+                    id="question-31-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-31-answers-C"
+                    >3) بامزه، سرحال و خودمانی ام</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-31-answers"
+                    id="question-31-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-31-answers-D"
+                    >4) با انگیزه، قاطع و مسئول</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              32 – وقتی درگیر یک رابطه صمیمی می‌شوم، اگر احساس کنم طرف مقابل با
+              من روراست نیست؛ من:
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-32-answers"
+                    id="question-32-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-32-answers-A"
+                    >1) عصبانی شده و واکنش نشان می‌دهم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-32-answers"
+                    id="question-32-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-32-answers-B"
+                    >2) ساکت می‌مانم، خشمم را کنترل نموده ودر جایی دیگر تلافی
+                    می‌کنم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-32-answers"
+                    id="question-32-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-32-answers-C"
+                    >3) غمگین شده و بهم می‌ریزم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-32-answers"
+                    id="question-32-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-32-answers-D"
+                    >4) از او فاصله می‌گیرم و از تعارض بیشتر دوری می‌کنم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              33 – زندگی زمانی برای ما معنا دار است که:
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-33-answers"
+                    id="question-33-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-33-answers-A"
+                    >1) تکلیف مدار و زاینده باشد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-33-answers"
+                    id="question-33-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-33-answers-B"
+                    >2) به من خوشبینی، طراوت و شادی بخشد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-33-answers"
+                    id="question-33-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-33-answers-C"
+                    >3) مملو از خشنودی دیگران و هدفمند باشد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-33-answers"
+                    id="question-33-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-33-answers-D"
+                    >4) فارغ از فشار و استرس باشد</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">34 – من در زمان کودکی:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-34-answers"
+                    id="question-34-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-34-answers-A"
+                    >1) مودب، محتاط و آرام بودم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-34-answers"
+                    id="question-34-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-34-answers-B"
+                    >2) کله شق،زرنگ و پرخاشگر بودم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-34-answers"
+                    id="question-34-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-34-answers-C"
+                    >3) حراف، شاد و بازیگوش بودم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-34-answers"
+                    id="question-34-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-34-answers-D"
+                    >4) ساکت، وابسته و خجالتی بودم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">35 – در بزرگسالی من:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-35-answers"
+                    id="question-35-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-35-answers-A"
+                    >1) متعهد، صادق و به شدت منظبطم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-35-answers"
+                    id="question-35-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-35-answers-B"
+                    >2) پذیرا، قانع و بی تکلیف</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-35-answers"
+                    id="question-35-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-35-answers-C"
+                    >3) جذاب، مثبت و تأثیر گذارم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-35-answers"
+                    id="question-35-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-35-answers-D"
+                    >4) خودرأی، مصمم و دستور بده هستم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">36 – به عنوان یک والد؛ من:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-36-answers"
+                    id="question-36-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-36-answers-A"
+                    >1) شاد، بیخیال و بی قید هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-36-answers"
+                    id="question-36-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-36-answers-B"
+                    >2) آسان گیر، زودباور و پذیرا هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-36-answers"
+                    id="question-36-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-36-answers-C"
+                    >3) هماهنگ، حساس و مراقب هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-36-answers"
+                    id="question-36-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-36-answers-D"
+                    >4) پرتوقع،زودرنج و سرسخت هستم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">37 – من در بحث با یک دوست، معمولا:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-37-answers"
+                    id="question-37-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-37-answers-A"
+                    >1) معذب، آشفته و سردرگم می‌شوم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-37-answers"
+                    id="question-37-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-37-answers-B"
+                    >2) رک، طعنه زن و گستاخ می‌شوم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-37-answers"
+                    id="question-37-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-37-answers-C"
+                    >3) فقط واقعیات را در نظر می‌گیرم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-37-answers"
+                    id="question-37-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-37-answers-D"
+                    >4) احساسات و اصول وی را در نظر می‌گیرم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              38 – وقتی دوست من به دردسر می‌افتد؛ من:
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-38-answers"
+                    id="question-38-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-38-answers-A"
+                    >1) بدون قضاوت،خوش‌بین و سهل‌گیر هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-38-answers"
+                    id="question-38-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-38-answers-B"
+                    >2) پشتیبان،صبور و شنونده خوبی هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-38-answers"
+                    id="question-38-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-38-answers-C"
+                    >3) حمایتگر، چاره جو و مسأله حل کن هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-38-answers"
+                    id="question-38-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-38-answers-D"
+                    >4) همراه همدل و وفادار خواهم بود.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">39 – من در حال تصمیم‌گیری:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-39-answers"
+                    id="question-39-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-39-answers-A"
+                    >1) اهل تأمل، دقیق و محتاط هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-39-answers"
+                    id="question-39-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-39-answers-B"
+                    >2) عجول، بی‌توجه و بی‌ثبات هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-39-answers"
+                    id="question-39-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-39-answers-C"
+                    >3) قاطع، روشن و منطقی هستم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-39-answers"
+                    id="question-39-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-39-answers-D"
+                    >4) مردد، کم رو و بی‌میل هستم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">40 – وقتی شکست می‌خورم دچار:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-40-answers"
+                    id="question-40-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-40-answers-A"
+                    >1) شرمساری و کاهش اعتماد به نفس می‌شوم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-40-answers"
+                    id="question-40-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-40-answers-B"
+                    >2) هراس و آشفتگی درونی می‌شوم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-40-answers"
+                    id="question-40-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-40-answers-C"
+                    >3) احساس گناه، خودانتقادی و افسردگی می‌شوم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-40-answers"
+                    id="question-40-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-40-answers-D"
+                    >4) دگرانتقادی، لجاجت و حالت تدافعی می‌شوم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">41 – اگر کسی مرا دور بزند:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-41-answers"
+                    id="question-41-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-41-answers-A"
+                    >1) عمیقا آزرده می‌شوم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-41-answers"
+                    id="question-41-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-41-answers-B"
+                    >2) احساساتم به گونه‌ای جریحه‌دار می‌شود که تا مدت‌ها با کسی
+                    دوست نخواهم شد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-41-answers"
+                    id="question-41-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-41-answers-C"
+                    >3) به شدت بهم می‌ریزم و بسرعت در صدد تلافی برمی‌آیم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-41-answers"
+                    id="question-41-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-41-answers-D"
+                    >4) ارتباطم با وی را قطع کرده، و به سرعت فرد یا افراد دیگری
+                    را جایگزین می‌کنم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">42 – شغل</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-42-answers"
+                    id="question-42-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-42-answers-A"
+                    >1) یک ضرورت گزیرناپذیر است که مجبورم بر آن گردن نهم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-42-answers"
+                    id="question-42-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-42-answers-B"
+                    >2) یک فعالیت مثبت است که من از انجام آن لذت زیادی
+                    می‌برم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-42-answers"
+                    id="question-42-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-42-answers-C"
+                    >3) یک فعالیت سالم است که باید به بهترین شکل انجام
+                    گیرد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-42-answers"
+                    id="question-42-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-42-answers-D"
+                    >4) کارآمدترین شیوه‌ی گذران زمان است.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">43 – من در موقعیت‌های اجتماعی:</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-43-answers"
+                    id="question-43-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-43-answers-A"
+                    >1) مورد حمایت دیگران قرار می‌گیرم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-43-answers"
+                    id="question-43-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-43-answers-B"
+                    >2) از دیگران واهمه دارم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-43-answers"
+                    id="question-43-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-43-answers-C"
+                    >3) مورد تحسین دیگران قرار می‌گیرم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-43-answers"
+                    id="question-43-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-43-answers-D"
+                    >4) مورد حسادت دیگران قرارمی‌گیرم.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              44 – من دوست دارم یک رابطه بین فردی بیشتر بر محور:
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-44-answers"
+                    id="question-44-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-44-answers-A"
+                    >1) احترام، تحمل و آرامش باشد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-44-answers"
+                    id="question-44-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-44-answers-B"
+                    >2) تشویق، شادی و سرگرمی باشد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-44-answers"
+                    id="question-44-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-44-answers-C"
+                    >3) تأیید و تصدیق دیگران باشد.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-44-answers"
+                    id="question-44-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-44-answers-D"
+                    >4) فهم و درک دیگران باشد.</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">
+              45 – من برای دستیابی به احساسات مثبت و با معنا در زندگی سراغ:
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-45-answers"
+                    id="question-45-answers-A"
+                    value="A"
+                    required
+                  />
+                  <label for="question-45-answers-A"
+                    >1) هیجان، سازندگی توأم با سرگرمی با دیگران می‌روم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-45-answers"
+                    id="question-45-answers-B"
+                    value="B"
+                    required
+                  />
+                  <label for="question-45-answers-B"
+                    >2) امنیت، خلاقیت و هدف می‌روم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-45-answers"
+                    id="question-45-answers-C"
+                    value="C"
+                    required
+                  />
+                  <label for="question-45-answers-C"
+                    >3) خطرپذیری، ریاست و فعالیت‌های مختلف می‌روم.</label
+                  >
+                </li>
+                <li class="list-group-item">
+                  <input
+                    type="radio"
+                    name="question-45-answers"
+                    id="question-45-answers-D"
+                    value="D"
+                    required
+                  />
+                  <label for="question-45-answers-D"
+                    >4) آرامش و ایمنی می‌روم</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card bg-light mb-3">
+            <div class="card-header">46 - رشته کارشناسی خود را انتخاب کنید. (اختیاری)</div>
+            <div class="card-body">
+              <div class="form-group">
+                <select
+                        class="form-control my-3"
+                        id="FormControlSelect1"
+                        name="field"
+                        placeholder="گزینه مورد نظر را انتخاب کنید."
+                        required
+                >
+                  <option value="not given" selected>
+                    لطفا گزینه مورد نظر را انتخاب کنید.
+                  </option>
+                  <option value="مهندسی برق" >مهندسی برق</option>
+                  <option value="مهندسی کامپیوتر" >مهندسی کامپیوتر</option>
+                  <option value="مهندسی مکانیک" >مهندسی مکانیک</option>
+                  <option value="مهندسی عمران" >مهندسی عمران</option>
+                  <option value="مهندسی معماری" >مهندسی معماری</option>
+                  <option value="مهندسی کشتی" >مهندسی کشتی</option>
+                  <option value="مهندسی هوافضا" >مهندسی هوافضا</option>
+                  <option value="مهندسی انرژی" >مهندسی انرژی</option>
+                  <option value="علوم کامپیوتر" >علوم کامپیوتر</option>
+                  <option value="مهندسی شهرسازی" >مهندسی شهرسازی</option>
+                  <option value="مهندسی فناوری اطلاعات" >مهندسی فناوری اطلاعات</option>
+                  <option value="مهندسی صنایع" >مهندسی صنایع</option>
+                  <option value="مهندسی شیمی" >مهندسی شیمی</option>
+                  <option value="مهندسی پزشکی" >مهندسی پزشکی</option>
+                  <option value="مهندسی دریا" >مهندسی دریا</option>
+                  <option value="مهندسی نساجی" >مهندسی نساجی</option>
+                  <option value="مهندسی رباتیک" >مهندسی رباتیک</option>
+                  <option value="مهندسی نفت" >مهندسی نفت</option>
+                  <option value="مهندسی ایمنی" >مهندسی ایمنی</option>
+                  <option value="مهندسی معدن" >مهندسی معدن</option>
+                  <option value="مهندسی پلیمر" >مهندسی پلیمر</option>
+                  <option value="مهندسی مواد" >مهندسی مواد</option>
+                  <option value="مهندسی مدیریت پروژه" >مهندسی مدیریت پروژه</option>
+                  <option value="مهندسی راه آهن" >مهندسی راه آهن</option>
+                  <option value="مهندسی کشاورزی" >مهندسی کشاورزی</option>
+                  <option value="علوم مهندسی" >علوم مهندسی</option>
+                  <option value="معماری داخلی" >معماری داخلی</option>
+                  <option value="کاردان فنی مکانیک" >کاردان فنی مکانیک</option>
+                  <option value="کاردان فنی عمران" >کاردان فنی عمران</option>
+                  <option value="کاردانی مراقبت پرواز" >کاردانی مراقبت پرواز</option>
+                  <option value="کاردان فنی برق" >کاردان فنی برق</option>
+                  <option value="کاردانی هواپیما" >کاردانی هواپیما</option>
+                  <option value="کاردان فنی معدن" >کاردان فنی معدن</option>
+                  <option value="مکاترونیک" >مکاترونیک</option>
+                  <option value="ریاضی" >ریاضی</option>
+                  <option value="شیمی" >شیمی</option>
+                  <option value="آمار" >آمار</option>
+                  <option value="حسابداری" >حسابداری</option>
+                  <option value="فیزیک" >فیزیک</option>
+                  <option value="فیزیک مهندسی" >فیزیک مهندسی</option>
+                  <option value="ریاضیات و کاربردها" >ریاضیات و کاربردها</option>
+                  <option value="کارشناسی چند رسانه ای" >کارشناسی چند رسانه ای</option>
+                  <option value="هوانوردی - خلبانی" >هوانوردی - خلبانی</option>
+                  <option value="مهندسی بازرسی فنی" >مهندسی بازرسی فنی</option>
+                  <option value="مهندسی ماشینهای کشاورزی" >مهندسی ماشینهای کشاورزی</option>
+                  <option value="هوانوردی-ناوبری هوایی" >هوانوردی-ناوبری هوایی</option>
+                  <option value="مهندسی مدیریت اجرایی" >مهندسی مدیریت اجرایی</option>
+                  <option value="مهندسی مواد و طراحی صنایع غذایی" >مهندسی مواد و طراحی صنایع غذایی</option>
+                  <option value="مهندسی مکانیک نیروگاه" >مهندسی مکانیک نیروگاه</option>
+                  <option value="علوم و فنون هوانوردی - خلبانی هلیکوپتری" >علوم و فنون هوانوردی - خلبانی هلیکوپتری</option>
+                  <option value="مهندسی فرماندهی و کنترل هوایی" >مهندسی فرماندهی و کنترل هوایی</option>
+                  <option value="مهندسی اپتیک و لیزر" >مهندسی اپتیک و لیزر</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-header">47 - چه میزان از رشته کارشناسی خود رضایت دارید؟ (اختیاری)</div>
+            <div class="card-body ">
+              <div class="form-group ">
+                <select
+                        class="form-control my-3"
+                        id="FormControlSelect1"
+                        name="satisfaction"
+                        placeholder="گزینه مورد نظر را انتخاب کنید."
+                        required
+                >
+                  <option value="0" selected>
+                    لطفا گزینه مورد نظر را انتخاب کنید.
+                  </option>
+                  <option value="10" >10 (بیشترین)</option>
+                  <option value="9" >9</option>
+                  <option value="8" >8</option>
+                  <option value="7" >7</option>
+                  <option value="6" >6</option>
+                  <option value="5" >5</option>
+                  <option value="4" >4</option>
+                  <option value="3" >3</option>
+                  <option value="2" >2</option>
+                  <option value="1" >1 (کمترین)</option>
+                </select>
+
+            </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="invalid-feedback">لطفا به تمامی سوالات پاسخ دهید</div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            پایان
+          </button>
+        </div>
+      </form>
+    </div>
+     <div class="container">
+            <div class="row"></br></div>
+        </div>
+    <footer class="footer position-fixed mt-2">
+        <div class=" justify-content-center text-center">
+          <div class="col-auto ">
+            <p class="m-2">© Copyright 2021 دستیار انتخاب رشته</p>
+          </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

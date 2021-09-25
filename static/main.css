@@ -1,0 +1,47 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: 'Shabnam', sans-serif;
+}
+/*--- navigation bar ---*/
+.navbar {
+  background: #1c1f4c;
+}
+.nav-link,
+.navbar-brand {
+  color: #fff;
+  cursor: pointer;
+}
+.nav-link {
+  margin-right: 1em !important;
+}
+.nav-link:hover {
+  color: #fec20f;
+}
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.mainmedia {
+  background-color: #edebd9;
+}
+
+.maincard {
+  background-color: #22bfb2;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fec20f;
+  color: white;
+  text-align: center;
+}
+
+.inbtn {
+  background-color: #009999;
+}
+
